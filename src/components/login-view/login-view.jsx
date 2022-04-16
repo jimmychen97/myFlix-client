@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
-import PropTypes from 'prop-types'
+import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 
-export default function LoginView(props) {
+export function LoginView(props) {
     // call useState() with empty initial value
     // returns an array of paried values that you detructure
     const[ username, setUsername ] = useState('');

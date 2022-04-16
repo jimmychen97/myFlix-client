@@ -11,7 +11,7 @@ export class MovieCard extends React.Component {
 // props object must include a movie object (shape({}))
 // movie prop may contain a Title, must be type string
 // props object must contain onMoiveClick() function
-MovieCard.PropTypes = {
+MovieCard.propTypes = {
     movie: PropTypes.shape({
         Title: PropTypes.string.isRequired,
         Description: PropTypes.string.isRequired,
