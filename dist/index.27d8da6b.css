@@ -1,4 +1,10 @@
 @import "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500&display=swap";
+* {
+  color: #abd1c6;
+  font-family: Plus Jakarta Sans, sans-serif;
+}
+
 .card {
   margin-top: 10px;
   padding: 5px;
@@ -33,4 +39,4 @@ Button {
   color: #4682b4;
 }
 
-/*# sourceMappingURL=index.e3f97e84.css.map */
+/*# sourceMappingURL=index.27d8da6b.css.map */

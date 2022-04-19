@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import './login-view.scss';
 
 export function LoginView(props) {
     // call useState() with empty initial value
@@ -18,16 +19,16 @@ export function LoginView(props) {
 
   return (
     <Form>
-        <Form.Group controlId='formUsername'>
+        <Form.Group className='mb-3' controlId='formUsername'>
             <Form.Label>Username:</Form.Label>
             <Form.Control type='text' onChange={e => setUsername(e.target.value)}/>
         </Form.Group>
-        <Form.Group controlId='formPassword'>
+        <Form.Group className="mb-3" controlId='formPassword'>
             <Form.Label>Password:</Form.Label>
             <Form.Control type='password' onChange={e => setPassword(e.target.value)}/>
         </Form.Group>
-          <Button variant='primary' type="submit" onClick={handleSubmit}>Sign In</Button>
-          <Button variant='secondary' type="button">Sign Up</Button>
+        <Button variant='primary' type="submit" onClick={handleSubmit}>Sign In</Button>
+        <Button variant='secondary' type="button">Sign Up</Button>
       </Form>
   )
 }

@@ -7,6 +7,7 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import './main-view.scss';
 
 export class MainView extends React.Component {
   // create the component, first thing to execute for a component
@@ -81,17 +82,17 @@ export class MainView extends React.Component {
                 />
               </Col>
           ) : (
-              movies.map((movie) => (
-                <Col md={3}>
-                  <MovieCard
-                    key={movie._id}
-                    movie={movie}
-                    onMovieClick={(newSelectedMovie) => {
-                      this.setSelectedMovie(newSelectedMovie);
-                    }}
-                  />
-                </Col>
-              ))
+            movies.map((movie) => (
+              <Col xs={12} sm={6} md={4} lg={3}>
+                <MovieCard
+                  key={movie._id}
+                  movie={movie}
+                  onMovieClick={(newSelectedMovie) => {
+                    this.setSelectedMovie(newSelectedMovie);
+                  }}
+                />
+              </Col>
+            ))
         )}
       </Row>
     );
