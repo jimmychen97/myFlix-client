@@ -29,7 +29,7 @@ export function LoginView(props) {
         </Form.Group>
         <Button variant='primary' type="submit" onClick={handleSubmit}>Sign In</Button>
         <Button variant='secondary' type="button">Sign Up</Button>
-      </Form>
+    </Form>
   )
 }
 

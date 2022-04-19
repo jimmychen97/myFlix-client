@@ -23,7 +23,8 @@ Button {
 }
 
 .movie-poster {
-  width: 100px;
+  height: 60%;
+  margin-bottom: 10px;
 }
 
 .movie-view {
