@@ -1,7 +1,8 @@
 @import "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500&display=swap";
 @import "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500&display=swap";
-html, body {
-  height: 100%;
+body {
+  height: 100vh;
+  padding: 0;
 }
 
 * {
@@ -35,17 +36,9 @@ Button {
   color: #fffffe;
 }
 
-html, body {
-  height: 100%;
-}
-
 .app-container {
   background-color: #0f0e17;
   font-family: Plus Jakarta Sans, sans-serif;
-}
-
-html {
-  height: 100%;
 }
 
 .my-flix {
