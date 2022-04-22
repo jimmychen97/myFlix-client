@@ -25028,10 +25028,14 @@ class MainView extends _reactDefault.default.Component {
     /* render() returns the visual representation of the component
         can only have one root element (wrap elements around <> </>)
     */ render() {
-        const { movies , selectedMovie , user  } = this.state;
-        // if(!user) {
-        //   return <LoginView onLoggedIn={user=> this.onLoggedIn(user)} />; 
-        // }
+        const { movies , selectedMovie , user: user1  } = this.state;
+        if (!user1) return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_loginView.LoginView, {
+            onLoggedIn: (user)=>this.onLoggedIn(user)
+        }, void 0, false, {
+            fileName: "src/components/main-view/main-view.jsx",
+            lineNumber: 67,
+            columnNumber: 14
+        }, this);
         if (movies.length === 0) return /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
             className: "main-view"
         }, void 0, false, {

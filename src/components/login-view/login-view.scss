@@ -5,6 +5,10 @@ $background-color: #0f0e17;
 $primary-color: #abd1c6;
 $button-color: #f9bc60;
 
+html,body { 
+    height:100%
+}
+
 * {
     color: $primary-color;
     font-family: $font-stack;
