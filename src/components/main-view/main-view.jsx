@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view'
 import { MovieCard } from '../movie-card/movie-card';
@@ -31,9 +31,18 @@ export class MainView extends React.Component {
         movies: response.data
       });
     })
-    .catch(err => {
-      console.log(err);
+    .catch(e => {
+      console.log(e);
     });
+
+    // get value of token from localStorage. If it is present, call getMovies with given username/token
+    let accessToken = localStorage.getItem('token');
+    if(accessToken !== null) {
+      this.setState({
+        user:localStorage.getItem('user')
+      });
+      this.getMovies(accessToken);
+    }
   }
 
   // when a movie is clicked, it updates the state of selectedMovie to that movie
@@ -49,11 +58,42 @@ export class MainView extends React.Component {
     })
   }
 
-  // passed as a prop, update user state of the MainView component
-  // called when the user has successfully logged in
-  onLoggedIn(user) {
+  // authData contains both token and username
+  onLoggedIn(authData) {
+    console.log(authData);
+
+    // username is saved in the user state
     this.setState({
-      user,
+      user: authData.user.Username
+    });
+
+    // two arguments: key value pair
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user.Username);
+
+    // gets the movie from API once the user is logged in
+    this.getMovies(authData.token);
+  }
+
+  onLoggedOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.setState({
+      user: null
+    });
+  }
+
+  // GET request to 'movies' ebdpoint
+  getMovies(token) {
+    axios.get('https://myflix453.herokuapp.com/movies', {
+      // passing bearer authorization, this allows authenticated request to API
+      headers: { Authorization: `Bearer ${token}` }
+    }).then(res => {
+      this.setState({
+        movies: res.data
+      });
+    }).catch(e => {
+      console.log(e);
     });
   }
 
@@ -71,30 +111,23 @@ export class MainView extends React.Component {
       return <div className="main-view"></div>;
 
     return (
-      <Row className="justify-content-md-center">
-        {selectedMovie ? (
-              <Col md={8}>
-                <MovieView
-                  movie={selectedMovie}
-                  onBackClick={(newSelectedMovie) => {
-                    this.setSelectedMovie(newSelectedMovie);
-                  }}
-                />
-              </Col>
-          ) : (
-            movies.map((movie) => (
-              <Col xs={12} sm={6} md={4} lg={3}>
-                <MovieCard
-                  key={movie._id}
-                  movie={movie}
-                  onMovieClick={(newSelectedMovie) => {
-                    this.setSelectedMovie(newSelectedMovie);
-                  }}
-                />
+      <Router>
+        <button onClick={() => { this.onLoggedOut() }}>Logout</button>
+        <Row className="main-view justify-content-md-center">
+          <Route exact path="/" render={() => {
+            return movies.map(m => (
+              <Col md={3} key={m._id}>
+                <MovieCard movie={m} />
               </Col>
             ))
-        )}
-      </Row>
+          }} />
+          <Route path="/movies/:movieId" render={({ match }) => {
+            return <Col md={8}>
+              <MovieView movie={movies.find(m => m._id === match.params.movieId)} />
+            </Col>
+          }} />
+        </Row>
+      </Router>
     );
   }
 }
