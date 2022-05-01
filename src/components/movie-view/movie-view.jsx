@@ -12,9 +12,15 @@ export class MovieView extends React.Component {
                     <Card.Img className="movie-poster" variant="top" src={movie.ImagePath} />
                     <Card.Title className="movie-title">{movie.Title}</Card.Title>
                     <Card.Text className="movie-description">{movie.Description}</Card.Text>
+                    <Link to={`/directors/${movie.Director.Name}`}>
+                        <Button variant="link">Director</Button>
+                    </Link>
+                    <Link to={`/genres/${movie.Genre.Name}`}>
+                        <Button variant="link">Genre</Button>
+                    </Link>
                 </Card.Body>
                 <Button variant='secondary' onClick={() => { onBackClick(null); }}>Back</Button>
             </Card>
         );
-    }
+    }asd
 }

@@ -45,9 +45,9 @@ export function LoginView(props) {
             axios.post('https://myflix453.herokuapp.com/login', {
                 Username: username,
                 Password: password
-            }).then(res => {
+            }).then(response => {
                 // data includes JWT token + username
-                const data = res.data;
+                const data = response.data;
                 props.onLoggedIn(data);
             }).catch(e => {
                 console.log('User does not exist')

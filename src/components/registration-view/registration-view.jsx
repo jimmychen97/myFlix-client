@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { Row, Col, Card, Container } from 'react-bootstrap';
 
 export function RegistrationView(props) {
 
@@ -12,11 +14,10 @@ export function RegistrationView(props) {
     const [ password, setPassword ] = useState('');
     const [ email, setEmail ] = useState(''); 
     const [ birthday, setBirthday] = useState('');
-    const [ nameErr, setNameErr ] = useState('');
+
     const [ usernameErr, setUsernameErr ] = useState('');
     const [ passwordErr, setPasswordErr ] = useState('');
     const [ emailErr, setEmailErr ] = useState(''); 
-    const [ birthdayErr, setBirthdayErr] = useState('');
 
     const validate = () => {
         let isReq = true;
@@ -55,6 +56,7 @@ export function RegistrationView(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const isReq = validate();
 
         if(isReq){
             axios.post('https://myflix453.herokuapp.com/users', {
@@ -63,8 +65,8 @@ export function RegistrationView(props) {
                 Password: password,
                 Email: email,
                 Birthday: birthday
-            }).then(res => {
-                const data = res.data;
+            }).then(response => {
+                const data = response.data;
                 console.log(data);
                 alert('Registration successful!');
                 window.open('/', '_self');
@@ -76,38 +78,49 @@ export function RegistrationView(props) {
     }
 
     return (
-        <Form>
-            <Form.Group className='mb-3' controlId='formUsername'>
-                <Form.Label>Username:</Form.Label>
-                <Form.Control type='text' onChange={e => setUsername(e.target.value)}/>
-                {usernameErr && <p>{usernameErr}</p>}
-            </Form.Group>
-            <Form.Group className="mb-3" controlId='formPassword'>
-                <Form.Label>Password:</Form.Label>
-                <Form.Control type='password' onChange={e => setPassword(e.target.value)}/>
-                {passwordErr && <p>{passwordErr}</p>}
-            </Form.Group>
-            <Form.Group className="mb-3" controlId='formEmail'>
-                <Form.Label>Email:</Form.Label>
-                <Form.Control type='text' onChange={e => setPassword(e.target.value)}/>
-                {emailErr && <p>{emailErr}</p>}
-            </Form.Group>
-            <Form.Group className="mb-3" controlId='formBirthday'>
-                <Form.Label>Birthday:</Form.Label>
-                <Form.Control type='text' onChange={e => setPassword(e.target.value)}/>
-                {birthdayErr && <p>{birthdayErr}</p>}
-            </Form.Group>
-            <Button variant='primary' type="submit" onClick={handleSubmit}>Sign Up</Button>
-        </Form>
+        <Container>
+            <Row>
+                <Col>
+                    <Card>
+                        <Card.Body>
+                            <Card.Title>
+                            <Form>
+                                <Form.Group className='mb-3' controlId='formUsername'>
+                                    <Form.Label>Username:</Form.Label>
+                                    <Form.Control type='text' onChange={e => setUsername(e.target.value)}/>
+                                    {usernameErr && <p>{usernameErr}</p>}
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId='formPassword'>
+                                    <Form.Label>Password:</Form.Label>
+                                    <Form.Control type='password' onChange={e => setPassword(e.target.value)}/>
+                                    {passwordErr && <p>{passwordErr}</p>}
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId='formEmail'>
+                                    <Form.Label>Email:</Form.Label>
+                                    <Form.Control type='text' onChange={e => setPassword(e.target.value)}/>
+                                    {emailErr && <p>{emailErr}</p>}
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId='formBirthday'>
+                                    <Form.Label>Birthday:</Form.Label>
+                                    <Form.Control type='text' onChange={e => setPassword(e.target.value)}/>
+                                </Form.Group>
+                                <Button variant='primary' type="submit" onClick={handleSubmit}>Sign Up</Button>
+                            </Form>
+                            </Card.Title>
+                        </Card.Body>
+                    </Card> 
+                </Col>
+            </Row>
+        </Container>
+        
     )
 }
 
-RegistrationView.PropTypes = {
+RegistrationView.propTypes = {
     user: PropTypes.shape({
         username: PropTypes.string.isRequired,
         password: PropTypes.string.isRequired,
         email: PropTypes.string.isRequired,
         birthday: PropTypes.string.isRequired,
-    }),
-    onRegistration: PropTypes.func.isRequired,
+    })
 };
