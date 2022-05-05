@@ -68,6 +68,7 @@ export const ProfileView = ({
       .then((response) => {
         setNewUsername(newUsername);
         localStorage.setItem('user', newUsername);
+        // window.open('/', '_self');
         console.log('user updated');
       })
       .catch((e) => {
@@ -87,6 +88,7 @@ export const ProfileView = ({
       .then((response) => {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
+        // window.open('/', '_self');
         console.log('user deleted');
       })
       .catch((e) => {
