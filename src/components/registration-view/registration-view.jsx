@@ -9,7 +9,6 @@ import { Row, Col, Card, Container } from 'react-bootstrap';
 export function RegistrationView(props) {
 
     // set initial state of username, password, email
-    const [ name, setName ] = useState(''); 
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ email, setEmail ] = useState(''); 
@@ -21,11 +20,6 @@ export function RegistrationView(props) {
 
     const validate = () => {
         let isReq = true;
-
-        if(!name){
-            setNameErr('Name is required');
-            isReq = false;
-        }
 
         if(!username){
             setUsernameErr('Username required');
@@ -57,10 +51,11 @@ export function RegistrationView(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         const isReq = validate();
+        console.log(username);
+        console.log(password);
 
         if(isReq){
             axios.post('https://myflix453.herokuapp.com/users', {
-                Name: name,
                 Username: username,
                 Password: password,
                 Email: email,
@@ -97,7 +92,7 @@ export function RegistrationView(props) {
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId='formEmail'>
                                     <Form.Label>Email:</Form.Label>
-                                    <Form.Control type='text' onChange={e => setPassword(e.target.value)}/>
+                                    <Form.Control type='text' onChange={e => setEmail(e.target.value)}/>
                                     {emailErr && <p>{emailErr}</p>}
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId='formBirthday'>

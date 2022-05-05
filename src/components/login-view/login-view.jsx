@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './login-view.scss';
 
@@ -68,9 +69,9 @@ export function LoginView(props) {
             {passwordErr && <p>{passwordErr}</p>}
         </Form.Group>
         <Button variant='primary' type="submit" onClick={handleSubmit}>Sign In</Button>
-        {/* <Link to="/register">
+        <Link to="/register">
             <Button variant='secondary' type="button">Sign Up</Button>
-        </Link> */}
+        </Link>
     </Form>
   )
 }
