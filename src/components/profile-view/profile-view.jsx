@@ -54,9 +54,13 @@ export const ProfileView = ({
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = { Username: newUsername };
+    const data = {
+      Username: newUsername,
+      Password: newPassword,
+      Email: newEmail,
+    };
     axios
-      .put(`https://myflapix.herokuapp.com/users/${localStorage.user}`, data, {
+      .put(`https://myflix453.herokuapp.com/users/${localStorage.user}`, data, {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('token'),
         },
@@ -64,6 +68,26 @@ export const ProfileView = ({
       .then((response) => {
         setNewUsername(newUsername);
         localStorage.setItem('user', newUsername);
+        console.log('user updated');
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const unregisterUser = (e) => {
+    e.preventDefault();
+
+    axios
+      .delete(`https://myflix453.herokuapp.com/users/${localStorage.user}`, {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+        },
+      })
+      .then((response) => {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        console.log('user deleted');
       })
       .catch((e) => {
         console.log(e);
@@ -85,20 +109,17 @@ export const ProfileView = ({
 
   return (
     <div>
-      <Card
-        style={{ width: '20rem' }}
-        className="justify-content-md-center"
-      >
+      <Card style={{ width: '20rem' }} className="justify-content-md-center">
         <Card.Body>
           <Card.Text>Username: {user.Username}</Card.Text>
           <Card.Text>Email: {user.Email}</Card.Text>
         </Card.Body>
 
-        <Button variant="primary" onClick={() => onBackClick(null)}>
+        <Button variant="primary" onClick={() => onBackClick()}>
           Back
         </Button>
 
-        <Button variant="secondary" onClick={() => onUnregisterClick()}>
+        <Button variant="secondary" onClick={unregisterUser}>
           Unregister
         </Button>
       </Card>
