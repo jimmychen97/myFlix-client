@@ -1,37 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Card, Button, Form, Col } from 'react-bootstrap';
+import { Card, Button, Form, Col, Row } from 'react-bootstrap';
 
 export const ProfileView = ({
   userData,
   onBackClick,
   onUnregisterClick,
   movies,
+  favMovies,
 }) => {
   const [user, setUser] = useState({});
   const [newUsername, setNewUsername] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [newEmail, setNewEmail] = useState('');
-
-  // let favoriteMovieList = userData.FavoriteMovies.map((movieId) => {
-  //   return (
-  //     <li key={movieId}>
-  //       {
-  //         movies.find((movie) => {
-  //           return movie._id === movieId;
-  //         }).Title
-  //       }
-  //       <button
-  //         variant="alert"
-  //         onClick={() => {
-  //           removeFromFavorites(movieId);
-  //         }}
-  //       >
-  //         remove movie
-  //       </button>
-  //     </li>
-  //   );
-  // });
 
   useEffect(() => {
     axios
@@ -68,7 +49,7 @@ export const ProfileView = ({
       .then((response) => {
         setNewUsername(newUsername);
         localStorage.setItem('user', newUsername);
-        // window.open('/', '_self');
+        window.open('/', '_self');
         console.log('user updated');
       })
       .catch((e) => {
@@ -88,7 +69,7 @@ export const ProfileView = ({
       .then((response) => {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
-        // window.open('/', '_self');
+        window.open('/', '_self');
         console.log('user deleted');
       })
       .catch((e) => {
@@ -106,7 +87,11 @@ export const ProfileView = ({
           },
         }
       )
-      .then((response) => {});
+      .then((response) => {
+        console.log(response);
+        alert('Movie removed');
+        window.open('/', '_self');
+      });
   };
 
   return (
@@ -115,6 +100,7 @@ export const ProfileView = ({
         <Card.Body>
           <Card.Text>Username: {user.Username}</Card.Text>
           <Card.Text>Email: {user.Email}</Card.Text>
+          <Card.Text>Favorite movie list: {user.FavoriteMovies}</Card.Text>
         </Card.Body>
 
         <Button variant="primary" onClick={() => onBackClick()}>
@@ -124,6 +110,30 @@ export const ProfileView = ({
         <Button variant="secondary" onClick={unregisterUser}>
           Unregister
         </Button>
+      </Card>
+
+      <h4>Favorite movie list</h4>
+      <Card>
+        <Card.Body>
+          {console.log(user.FavoriteMovies)}
+          {user.FavoriteMovies === undefined ? (
+            <Card.Text>No Favorite Movies</Card.Text>
+          ) : (
+            user.FavoriteMovies.forEach((movie) => {
+              if (movie === movies._id) {
+                return (
+                  <Card className="favorite-movie" key={movies._id}>
+                    {console.log(movies._id)}
+                    <Card.Img variant="top" src={movies.ImagePath} />
+                    <Card.Body>
+                      <Card.Title>{movies.Title}</Card.Title>
+                    </Card.Body>
+                  </Card>
+                );
+              }
+            })
+          )}
+        </Card.Body>
       </Card>
 
       <Form>
