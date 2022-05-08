@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500&display=swap');
+
+$font-stack: 'Plus Jakarta Sans', sans-serif;
+$background-color: #0f0e17;
+$primary-color: #abd1c6;
+$button-color: #f9bc60;
+
+body {
+    background-color: $background-color !important;
+}
+
+.app-container {
+    font-family: $font-stack;
+}

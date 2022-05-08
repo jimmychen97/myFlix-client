@@ -1,0 +1,19 @@
+$primary-color: #fffffe;
+$button-color: #ff8906;
+
+.card {
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.card-body {
+    color: $primary-color;
+}
+
+.card-img {
+    height: 60%;
+}
+
+Button {
+    color: $button-color;
+}

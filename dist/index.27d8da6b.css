@@ -1,0 +1,51 @@
+@import "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500&display=swap";
+body {
+  height: 100vh;
+  padding: 0;
+}
+
+* {
+  color: #abd1c6;
+  font-family: Plus Jakarta Sans, sans-serif;
+}
+
+.card {
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.card-body {
+  color: #fffffe;
+}
+
+.card-img {
+  height: 60%;
+}
+
+Button {
+  color: #ff8906;
+}
+
+.movie-poster {
+  height: 60%;
+  margin-bottom: 10px;
+}
+
+.movie-view {
+  color: #fffffe;
+}
+
+body {
+  background-color: #0f0e17 !important;
+}
+
+.app-container {
+  font-family: Plus Jakarta Sans, sans-serif;
+}
+
+.my-flix {
+  color: #4682b4;
+}
+
+/*# sourceMappingURL=index.27d8da6b.css.map */
