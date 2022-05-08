@@ -121,15 +121,7 @@ export const ProfileView = ({
           ) : (
             user.FavoriteMovies.forEach((movie) => {
               if (movie === movies._id) {
-                return (
-                  <Card className="favorite-movie" key={movies._id}>
-                    {console.log(movies._id)}
-                    <Card.Img variant="top" src={movies.ImagePath} />
-                    <Card.Body>
-                      <Card.Title>{movies.Title}</Card.Title>
-                    </Card.Body>
-                  </Card>
-                );
+                return <MovieCard movie={movie} />;
               }
             })
           )}
