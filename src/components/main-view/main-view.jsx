@@ -159,7 +159,6 @@ export class MainView extends React.Component {
               console.log(match);
               return (
                 <Col md={8}>
-                  <NavbarView user={user}></NavbarView>
                   <MovieView
                     movie={movies.find((m) => m._id === match.params.movieId)}
                     onBackClick={() => history.goBack()}
