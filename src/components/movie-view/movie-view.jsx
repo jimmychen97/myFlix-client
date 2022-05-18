@@ -7,10 +7,12 @@ import { Link } from 'react-router-dom';
 export class MovieView extends React.Component {
   addToFavorite(movieId) {
     const token = localStorage.getItem('token');
+    console.log(token);
 
     axios
       .post(
         `https://myflix453.herokuapp.com/users/${localStorage.user}/movies/${movieId}`,
+        {},
         {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         }
