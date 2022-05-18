@@ -2,7 +2,7 @@
   "name": "myflix-client",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx parcel src/index.html"
@@ -24,7 +24,10 @@
     "react": "^18.0.0",
     "react-bootstrap": "^2.2.3",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^5.3.0"
+    "react-redux": "^8.0.1",
+    "react-router-dom": "^5.3.0",
+    "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.4.1",
