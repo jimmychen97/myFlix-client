@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Card, Button, Form, Col, Row } from 'react-bootstrap';
+import { Container, Card, Button, Form, Col, Row } from 'react-bootstrap';
+import { MovieCard } from '../movie-card/movie-card';
 
 export const ProfileView = ({
   userData,
@@ -88,14 +89,16 @@ export const ProfileView = ({
         }
       )
       .then((response) => {
-        console.log(response);
         alert('Movie removed');
-        window.open('/', '_self');
+        window.location.reload(false);
+      })
+      .catch((e) => {
+        console.log(e);
       });
   };
 
   return (
-    <div>
+    <Container>
       <Card style={{ width: '20rem' }} className="justify-content-md-center">
         <Card.Body>
           <Card.Text>Username: {user.Username}</Card.Text>
@@ -113,20 +116,28 @@ export const ProfileView = ({
       </Card>
 
       <h4>Favorite movie list</h4>
-      <Card>
-        <Card.Body>
-          {console.log(user.FavoriteMovies)}
-          {user.FavoriteMovies === undefined ? (
-            <Card.Text>No Favorite Movies</Card.Text>
-          ) : (
-            user.FavoriteMovies.forEach((movie) => {
-              if (movie === movies._id) {
-                return <MovieCard movie={movie} />;
-              }
-            })
-          )}
-        </Card.Body>
-      </Card>
+      {user.FavoriteMovies === undefined || user.FavoriteMovies.length === 0 ? (
+        <Card.Text>No Favorite Movies</Card.Text>
+      ) : (
+        <div>
+          {movies.map((m) => {
+            if (user.FavoriteMovies.includes(m._id)) {
+              return (
+                <Col md={4} key={m._id}>
+                  <MovieCard movie={m} />
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    onClick={() => removeFromFavorites(m._id)}
+                  >
+                    Remove from favorites
+                  </Button>
+                </Col>
+              );
+            }
+          })}
+        </div>
+      )}
 
       <Form>
         <Form.Group>
@@ -165,6 +176,6 @@ export const ProfileView = ({
           Submit
         </Button>
       </Form>
-    </div>
+    </Container>
   );
 };
