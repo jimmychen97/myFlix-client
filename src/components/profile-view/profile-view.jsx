@@ -110,7 +110,7 @@ export const ProfileView = ({
     <Container>
       <Row>
         <Col>
-          <h4>Your Favorites</h4>
+          <h3>Your Favorites</h3>
           {user.FavoriteMovies === undefined ||
           user.FavoriteMovies.length === 0 ? (
             <Card.Text>No Favorite Movies</Card.Text>
@@ -119,14 +119,15 @@ export const ProfileView = ({
               {movies.map((m) => {
                 if (user.FavoriteMovies.includes(m._id)) {
                   return (
-                    <Col md={12} key={m._id}>
+                    <Col md={8} key={m._id}>
                       <MovieCard movie={m} />
                       <Button
-                        variant="primary"
+                        variant="danger"
                         type="submit"
                         onClick={() => removeFromFavorites(m._id)}
+                        style={{ margin: '5px 0px 10px 5px' }}
                       >
-                        Remove from favorites
+                        Remove from Favorites
                       </Button>
                     </Col>
                   );
@@ -143,7 +144,7 @@ export const ProfileView = ({
             <p>Email: {user.Email}</p>
             <p>Birthday: {user.Birthday}</p>
             <Button
-              variant="secondary"
+              variant="danger"
               onClick={unregisterUser}
               className="profile-button"
             >
