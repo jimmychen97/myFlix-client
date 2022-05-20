@@ -32,7 +32,7 @@ export function RegistrationView(props) {
       setPasswordErr('Password required');
       isReq = false;
     } else if (password.length < 6) {
-      setPassword('Password must be 6 characters long');
+      setPasswordErr('Password must be 6 characters long');
       isReq = false;
     }
 
@@ -78,52 +78,43 @@ export function RegistrationView(props) {
     <Container>
       <Row>
         <Col>
-          <Card>
-            <Card.Body>
-              <Card.Title>
-                <Form>
-                  <Form.Group className="mb-3" controlId="formUsername">
-                    <Form.Label>Username:</Form.Label>
-                    <Form.Control
-                      type="text"
-                      onChange={(e) => setUsername(e.target.value)}
-                    />
-                    {usernameErr && <p>{usernameErr}</p>}
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="formPassword">
-                    <Form.Label>Password:</Form.Label>
-                    <Form.Control
-                      type="password"
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                    {passwordErr && <p>{passwordErr}</p>}
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="formEmail">
-                    <Form.Label>Email:</Form.Label>
-                    <Form.Control
-                      type="text"
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                    {emailErr && <p>{emailErr}</p>}
-                  </Form.Group>
-                  <Form.Group className="mb-3" controlId="formBirthday">
-                    <Form.Label>Birthday:</Form.Label>
-                    <Form.Control
-                      type="text"
-                      onChange={(e) => setBirthday(e.target.value)}
-                    />
-                  </Form.Group>
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    onClick={handleSubmit}
-                  >
-                    Sign Up
-                  </Button>
-                </Form>
-              </Card.Title>
-            </Card.Body>
-          </Card>
+          <Form>
+            <Form.Group className="mb-3" controlId="formUsername">
+              <Form.Label>Username:</Form.Label>
+              <Form.Control
+                type="text"
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              {usernameErr && <p>{usernameErr}</p>}
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formPassword">
+              <Form.Label>Password:</Form.Label>
+              <Form.Control
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {passwordErr && <p>{passwordErr}</p>}
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formEmail">
+              <Form.Label>Email:</Form.Label>
+              <Form.Control
+                type="text"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              {emailErr && <p>{emailErr}</p>}
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBirthday">
+              <Form.Label>Birthday:</Form.Label>
+              <Form.Control
+                type="text"
+                onChange={(e) => setBirthday(e.target.value)}
+                placeholder="XXXX-XX-XX"
+              />
+            </Form.Group>
+            <Button variant="light" type="submit" onClick={handleSubmit}>
+              Sign Up
+            </Button>
+          </Form>
         </Col>
       </Row>
     </Container>

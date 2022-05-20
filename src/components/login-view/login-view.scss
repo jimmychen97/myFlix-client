@@ -6,12 +6,16 @@ $primary-color: #abd1c6;
 $button-color: #f9bc60;
 
 body {
-    height: 100vh;
-    padding: 0;
+  height: 100vh;
+  padding: 0;
 }
 
 * {
-    color: $primary-color;
-    font-family: $font-stack;
-    // background-color: $background-color;
+  color: $primary-color;
+  font-family: $font-stack;
+  // background-color: $background-color;
+}
+
+.login-view-button {
+  margin: 5px 5px 0px 5px;
 }

@@ -29,25 +29,31 @@ export class MovieView extends React.Component {
     const { movie, onBackClick } = this.props;
 
     return (
-      <Card className="movie-view" bg="dark">
-        <Card.Body>
-          <Card.Img
-            className="movie-poster"
-            variant="top"
-            src={movie.ImagePath}
-          />
-          <Card.Title className="movie-title">{movie.Title}</Card.Title>
-          <Card.Text className="movie-description">
-            {movie.Description}
-          </Card.Text>
-          <Link to={`/director/${movie.Director.Name}`}>
-            <Button variant="link">Director</Button>
-          </Link>
-          <Link to={`/genre/${movie.Genre.Name}`}>
-            <Button variant="link">Genre</Button>
-          </Link>
-        </Card.Body>
-        <Button variant="primary" onClick={() => this.addToFavorite(movie._id)}>
+      <Container>
+        <Row>
+          <Col>
+            <img src={movie.ImagePath} style={{ height: '400px' }} />
+          </Col>
+          <Col>
+            <h1 style={{ color: 'white' }}>{movie.Title}</h1>
+            <h6>{movie.Description}</h6>
+            <Link to={`/director/${movie.Director.Name}`}>
+              <Button variant="light" className="movie-view-button">
+                Director
+              </Button>
+            </Link>
+            <Link to={`/genre/${movie.Genre.Name}`}>
+              <Button variant="light" className="movie-view-button">
+                Genre
+              </Button>
+            </Link>
+          </Col>
+        </Row>
+        <Button
+          variant="light"
+          onClick={() => this.addToFavorite(movie._id)}
+          className="movie-view-button"
+        >
           Add to Favorites
         </Button>
         <Button
@@ -55,10 +61,11 @@ export class MovieView extends React.Component {
           onClick={() => {
             onBackClick(null);
           }}
+          className="movie-view-button"
         >
           Back
         </Button>
-      </Card>
+      </Container>
     );
   }
   asd;

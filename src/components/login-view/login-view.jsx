@@ -78,14 +78,19 @@ export function LoginView(props) {
         />
         {passwordErr && <p>{passwordErr}</p>}
       </Form.Group>
-      <Button variant="primary" type="submit" onClick={handleSubmit}>
+      <Button
+        variant="light"
+        type="submit"
+        className="login-view-button"
+        onClick={handleSubmit}
+      >
         Sign In
       </Button>
-      <Link to="/register">
-        <Button variant="secondary" type="button">
+      {/* <Link to="/register">
+        <Button variant="light" type="button" className="login-view-button">
           Sign Up
         </Button>
-      </Link>
+      </Link> */}
     </Form>
   );
 }

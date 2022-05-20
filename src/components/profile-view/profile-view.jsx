@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, Card, Button, Form, Col, Row } from 'react-bootstrap';
+import {
+  Container,
+  Card,
+  Button,
+  Form,
+  Col,
+  Row,
+  ListGroup,
+} from 'react-bootstrap';
 import { MovieCard } from '../movie-card/movie-card';
+import './profile-view.scss';
 
 export const ProfileView = ({
   userData,
@@ -70,8 +79,8 @@ export const ProfileView = ({
       .then((response) => {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
+        alert('Unregistered user!');
         window.open('/', '_self');
-        console.log('user deleted');
       })
       .catch((e) => {
         console.log(e);
@@ -89,7 +98,7 @@ export const ProfileView = ({
         }
       )
       .then((response) => {
-        alert('Movie removed');
+        alert('Movie removed from favorites');
         window.location.reload(false);
       })
       .catch((e) => {
@@ -99,83 +108,98 @@ export const ProfileView = ({
 
   return (
     <Container>
-      <Card style={{ width: '20rem' }} className="justify-content-md-center">
-        <Card.Body>
-          <Card.Text>Username: {user.Username}</Card.Text>
-          <Card.Text>Email: {user.Email}</Card.Text>
-          <Card.Text>Favorite movie list: {user.FavoriteMovies}</Card.Text>
-        </Card.Body>
+      <Row>
+        <Col>
+          <h4>Your Favorites</h4>
+          {user.FavoriteMovies === undefined ||
+          user.FavoriteMovies.length === 0 ? (
+            <Card.Text>No Favorite Movies</Card.Text>
+          ) : (
+            <div>
+              {movies.map((m) => {
+                if (user.FavoriteMovies.includes(m._id)) {
+                  return (
+                    <Col md={6} key={m._id}>
+                      <MovieCard movie={m} />
+                      <Button
+                        variant="primary"
+                        type="submit"
+                        onClick={() => removeFromFavorites(m._id)}
+                      >
+                        Remove from favorites
+                      </Button>
+                    </Col>
+                  );
+                }
+              })}
+            </div>
+          )}
+        </Col>
 
-        <Button variant="primary" onClick={() => onBackClick()}>
-          Back
-        </Button>
+        <Col>
+          <div>
+            <h4>User Information</h4>
+            <h6>Username: {user.Username}</h6>
+            <h6>Email: {user.Email}</h6>
+            <h6>Birthday: {user.Birthday}</h6>
+            <Button
+              variant="primary"
+              onClick={() => onBackClick()}
+              className="profile-button"
+            >
+              Back
+            </Button>
 
-        <Button variant="secondary" onClick={unregisterUser}>
-          Unregister
-        </Button>
-      </Card>
+            <Button
+              variant="secondary"
+              onClick={unregisterUser}
+              className="profile-button"
+            >
+              Unregister
+            </Button>
+          </div>
 
-      <h4>Favorite movie list</h4>
-      {user.FavoriteMovies === undefined || user.FavoriteMovies.length === 0 ? (
-        <Card.Text>No Favorite Movies</Card.Text>
-      ) : (
-        <div>
-          {movies.map((m) => {
-            if (user.FavoriteMovies.includes(m._id)) {
-              return (
-                <Col md={4} key={m._id}>
-                  <MovieCard movie={m} />
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    onClick={() => removeFromFavorites(m._id)}
-                  >
-                    Remove from favorites
-                  </Button>
-                </Col>
-              );
-            }
-          })}
-        </div>
-      )}
-
-      <Form>
-        <Form.Group>
-          <Form.Label>New username:</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="Enter username"
-            value={newUsername}
-            maxLength={20}
-            minLength={5}
-            onChange={(e) => setNewUsername(e.target.value)}
-          />
-          <Form.Label>New password:</Form.Label>
-          <Form.Control
-            required
-            type="password"
-            placeholder="Enter password"
-            value={newPassword}
-            maxLength={20}
-            minLength={5}
-            onChange={(e) => setNewPassword(e.target.value)}
-          />
-          <Form.Label>New email:</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="Enter email"
-            value={newEmail}
-            maxLength={20}
-            minLength={5}
-            onChange={(e) => setNewEmail(e.target.value)}
-          />
-        </Form.Group>
-        <Button type="button" onClick={handleSubmit}>
-          Submit
-        </Button>
-      </Form>
+          <h4>Update User Information</h4>
+          <Form>
+            <Form.Group>
+              <Form.Label>New username:</Form.Label>
+              <Form.Control
+                required
+                type="text"
+                value={newUsername}
+                maxLength={20}
+                minLength={5}
+                onChange={(e) => setNewUsername(e.target.value)}
+              />
+              <Form.Label>New password:</Form.Label>
+              <Form.Control
+                required
+                type="password"
+                value={newPassword}
+                maxLength={20}
+                minLength={5}
+                onChange={(e) => setNewPassword(e.target.value)}
+              />
+              <Form.Label>New email:</Form.Label>
+              <Form.Control
+                required
+                type="text"
+                value={newEmail}
+                maxLength={20}
+                minLength={5}
+                onChange={(e) => setNewEmail(e.target.value)}
+              />
+            </Form.Group>
+            <Button
+              type="button"
+              onClick={handleSubmit}
+              className="profile-button"
+            >
+              Submit
+            </Button>
+          </Form>
+        </Col>
+      </Row>
     </Container>
   );
 };

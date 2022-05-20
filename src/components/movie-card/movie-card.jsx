@@ -7,35 +7,38 @@ import { CardGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export class MovieCard extends React.Component {
-    render() {
-        const { movie, onMovieClick } = this.props;
+  render() {
+    const { movie, onMovieClick } = this.props;
 
-        return (
-            <CardGroup>
-                <Card className='card' bg='dark'>
-                    <Card.Img variant='top' src={movie.ImagePath} className='card-img'/>
-                    <Card.Body className='card-body'>
-                        <Card.Title>{movie.Title}</Card.Title>
-                        <Card.Text>{movie.Description}</Card.Text>
-                        <Link to={`/movies/${movie._id}`}>
-                            <Button variant='link'>Details</Button>
-                        </Link>
-                    </Card.Body>
-                </Card>
-            </CardGroup>
-            
-        );
-    }
+    return (
+      <CardGroup>
+        <Card className="card" bg="dark">
+          <Card.Img
+            variant="top"
+            src={movie.ImagePath}
+            style={{ height: '400px' }}
+          />
+          <Card.Body className="card-body">
+            <Card.Title>{movie.Title}</Card.Title>
+            <Card.Text className="card-text">{movie.Description}</Card.Text>
+            <Link to={`/movies/${movie._id}`}>
+              <Button variant="light">Details</Button>
+            </Link>
+          </Card.Body>
+        </Card>
+      </CardGroup>
+    );
+  }
 }
 
 // props object must include a movie object (shape({}))
 // movie prop may contain a Title, must be type string
 // props object must contain onMoiveClick() function
 MovieCard.propTypes = {
-    movie: PropTypes.shape({
-        Title: PropTypes.string.isRequired,
-        Description: PropTypes.string.isRequired,
-        ImagePath: PropTypes.string.isRequired
-    }).isRequired,
-    // onMovieClick: PropTypes.func.isRequired
+  movie: PropTypes.shape({
+    Title: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
+  }).isRequired,
+  // onMovieClick: PropTypes.func.isRequired
 };

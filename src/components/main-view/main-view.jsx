@@ -174,7 +174,6 @@ class MainView extends React.Component {
               console.log(match);
               return (
                 <Col md={8}>
-                  <NavbarView user={user}></NavbarView>
                   <DirectorView
                     director={
                       movies.find((m) => m.Director.Name === match.params.name)
@@ -201,7 +200,6 @@ class MainView extends React.Component {
               if (movies.length === 0) return <div className="main-view" />;
               return (
                 <Col md={8}>
-                  <NavbarView user={user}></NavbarView>
                   <GenreView
                     genre={
                       movies.find((m) => m.Genre.Name === match.params.name)

@@ -1,25 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Container, Row, Col } from 'react-bootstrap';
 
-export const DirectorView = ({director}) => {
+export const DirectorView = ({ director }) => {
   return (
-    <div className="director-view d-grid gap-2">
-      <div className="director-name">
-        <span className="label">Name: </span>
-        <span className="value">{director.Name}</span>
-      </div>
-      <div className="director-bio">
-        <span className="label">Biography: </span>
-        <span className="value">{director.Bio}</span>
-      </div>
-      <div className="director-birthyear">
-        <span className="label">Birth: </span>
-        <span className="value">{director.Birth}</span>
-      </div>
-      <Link to="/">
-        <Button variant="link">Back to Movie List</Button>
-      </Link>
-    </div>
+    <Container>
+      <Row>
+        <Col>
+          <h5>Director name: {director.Name}</h5>
+          <h5>Biography: {director.Bio}</h5>
+          <h5>Birth Year: {director.Birth}</h5>
+          <Link to="/">
+            <Button variant="light">Back to Home</Button>
+          </Link>
+        </Col>
+      </Row>
+    </Container>
   );
 };
