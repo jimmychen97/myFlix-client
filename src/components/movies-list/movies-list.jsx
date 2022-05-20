@@ -22,7 +22,7 @@ function MoviesList(props) {
 
   return (
     <>
-      <Col md={12} className="mb-4">
+      <Col md={{ span: 4, offset: 7 }} className="mb-4">
         <VisibilityFilterInput visibilityFilter={visibilityFilter} />
       </Col>
       {filteredMovies.map((movie) => (

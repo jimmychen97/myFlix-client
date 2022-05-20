@@ -16,8 +16,13 @@ export function NavbarView({ user }) {
   };
 
   return (
-    <Navbar className="main-nav" sticky="top" bg="dark" expand="lg">
-      <Container>
+    <Navbar
+      style={{ margin: '0px 0px 20px 0px' }}
+      sticky="top"
+      bg="dark"
+      expand="lg"
+    >
+      <Container fluid className="p-0">
         <Navbar.Brand href="/" style={{ color: 'White' }}>
           MyFlix
         </Navbar.Brand>

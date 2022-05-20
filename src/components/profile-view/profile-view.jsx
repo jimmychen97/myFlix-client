@@ -119,7 +119,7 @@ export const ProfileView = ({
               {movies.map((m) => {
                 if (user.FavoriteMovies.includes(m._id)) {
                   return (
-                    <Col md={6} key={m._id}>
+                    <Col md={12} key={m._id}>
                       <MovieCard movie={m} />
                       <Button
                         variant="primary"
@@ -138,18 +138,10 @@ export const ProfileView = ({
 
         <Col>
           <div>
-            <h4>User Information</h4>
-            <h6>Username: {user.Username}</h6>
-            <h6>Email: {user.Email}</h6>
-            <h6>Birthday: {user.Birthday}</h6>
-            <Button
-              variant="primary"
-              onClick={() => onBackClick()}
-              className="profile-button"
-            >
-              Back
-            </Button>
-
+            <h3>User Information</h3>
+            <p>Username: {user.Username}</p>
+            <p>Email: {user.Email}</p>
+            <p>Birthday: {user.Birthday}</p>
             <Button
               variant="secondary"
               onClick={unregisterUser}
@@ -159,7 +151,7 @@ export const ProfileView = ({
             </Button>
           </div>
 
-          <h4>Update User Information</h4>
+          <h3>Update User Information</h3>
           <Form>
             <Form.Group>
               <Form.Label>New username:</Form.Label>
