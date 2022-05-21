@@ -62,7 +62,7 @@ export function LoginView(props) {
 
   return (
     <Form>
-      <Form.Group className="mb-3" controlId="formUsername">
+      <Form.Group className="mb-3 mx-5" controlId="formUsername" size="lg">
         <Form.Label>Username:</Form.Label>
         <Form.Control
           type="text"
@@ -70,7 +70,7 @@ export function LoginView(props) {
         />
         {usernameErr && <p>{usernameErr}</p>}
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formPassword">
+      <Form.Group className="mb-3 mx-5" controlId="formPassword">
         <Form.Label>Password:</Form.Label>
         <Form.Control
           type="password"
@@ -81,7 +81,7 @@ export function LoginView(props) {
       <Button
         variant="light"
         type="submit"
-        className="login-view-button"
+        className="login-view-button mx-5"
         onClick={handleSubmit}
       >
         Sign In
